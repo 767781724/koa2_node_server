@@ -36,7 +36,9 @@ const index = require('./routes/index')
 
 // middlewares
 app.use(koaBody({multipart:true}));
-app.use(bodyparser())
+app.use(bodyparser({
+  formLimit: '10mb'
+}))
 app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))

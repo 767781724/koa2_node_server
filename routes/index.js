@@ -3,7 +3,8 @@ const {
 	config_hit_alert,
 	config_surveillance_task,
 	config_repository,
-	config_face_verify
+	config_face_verify,
+	config_camera
 } = require('../public/config')
 
 const router = require('koa-router')()
@@ -48,6 +49,10 @@ router.get('/business/api/surveillance/task', async (ctx, next) => {
 router.get('/business/api/repository', async (ctx, next) => {
 	ctx.body = config_repository()
 })
+//摄像头列表
+router.get('/business/api/camera', async (ctx, next) => {
+	ctx.body = config_camera()
+})
 //认证核验-人脸识别
 router.post('/business/api/face_detection', async (ctx, next) => {
 	ctx.body = config_repository()
@@ -56,5 +61,27 @@ router.post('/business/api/face_detection', async (ctx, next) => {
 router.post('/business/api/face/verify', async (ctx, next) => {
 	ctx.body = config_face_verify()
 })
-
+//token保活
+router.get('/business/api/user/self', async (ctx) => {
+	ctx.body = {
+		rtn: 0,
+		message: 'ok',
+		id: 'userid',
+		name: 'test',
+		extra_meta: {}
+	}
+})
+//一键布控
+router.post('/business/api/repository/picture/batch_single_person', async (ctx) => {
+	ctx.body = {
+		rtn: 0,
+		message: 'ok',
+		retsults: [{
+			picture_uri: 'uri',
+			face_image_id: 'id',
+			face_image_uri: 'url',
+			face_rect:{}
+		}]
+	}
+})
 module.exports = router

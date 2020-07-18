@@ -1,4 +1,4 @@
-const { json_retrieval_repository, json_hit_alert,json_surveillance_task,json_repository } = require("./json_template");
+const { json_retrieval_repository, json_hit_alert,json_surveillance_task,json_repository,json_camera } = require("./json_template");
 
 const config_retrieval_repository=(start,limt)=>{
     let res={
@@ -76,10 +76,24 @@ const config_face_verify=()=>{
     }
     return res;
 }
+const config_camera=()=>{
+    let res= {
+        "message": "OK",
+        "sets":[],
+        "cameras":[],
+		"rtn": 0,
+    }
+    for(let i=0;i<9;i++){
+        res.cameras.push(json_camera(i))
+    }
+    return res;
+}
 module.exports={
     config_retrieval_repository,
     config_hit_alert,
     config_surveillance_task,
     config_repository,
-    config_face_verify
+    config_face_detection,
+    config_face_verify,
+    config_camera
 }

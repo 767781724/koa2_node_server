@@ -4,9 +4,9 @@ const {
 	config_surveillance_task,
 	config_repository,
 	config_face_verify,
-	config_camera
+	config_camera,
+	config_retrieval_camera
 } = require('../public/config')
-const {img} = require('../public/json_img');
 const path=require('path');
 const router = require('koa-router')();
 const fs=require('fs');
@@ -37,6 +37,11 @@ router.post('/business/api/login', async (ctx, next) => {
 router.post('/business/api/retrieval_repository', async (ctx, next) => {
 	const params = ctx.request.body;
 	ctx.body = config_retrieval_repository(params.start, params.limit)
+})
+//实时检索
+router.post('/business/api/retrieval_camera', async (ctx, next) => {
+	const params = ctx.request.body;
+	ctx.body = config_retrieval_camera(params.start, params.limit)
 })
 //告警接口
 router.post('/business/api/hit/alert', async (ctx, next) => {
@@ -86,7 +91,8 @@ router.post('/business/api/repository/picture/batch_single_person', async (ctx) 
 		}]
 	}
 })
-router.get('/storage/image',async (ctx)=>{
+router.get('/storage/v1/image',async (ctx)=>{
+	console.log(ctx.request)
 	const filePath=path.join(__dirname,'../public/img/default.jpg')
 	const file = fs.readFileSync(filePath);
 	ctx.set('content-type', 'image/jpg');

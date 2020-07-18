@@ -1,4 +1,4 @@
-const json_retrieval_repository={
+const json_retrieval_repository = {
     "repository_id": "3",
     "face_image_id": "844424930132127",
     "face_image_uri": "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2091711702,2468700162&fm=11&gp=0.jpg",
@@ -20,6 +20,21 @@ const json_retrieval_repository={
         "custom_field_1": "custom_content"
     }
 }
+const json_retrieval_camera = (index) => ({
+    "camera_id": `${index}`,
+    "face_image_id": "844424930132127",
+    "face_image_uri": "",
+    "face_rect": {
+        "h": 1110,
+        "w": 1110,
+        "x": 344,
+        "y": 837
+    },
+    "picture_uri": "",
+    "similarity": 94.95722095930476,
+    "timestamp": 1497584008,
+    "rec_age_range": 2,
+})
 const json_hit_alert = {
     "hit_detail": {
         "hit_record_id": "37",
@@ -67,45 +82,46 @@ const json_hit_alert = {
         }
     }
 }
-const json_surveillance_task=(index)=>({
-    name:`布控${index}`,
-    id:`${index}`,
-    ready:0, //0表示已经ready, 1表示正在准备中
-    enable:0, // int 0表示开启, 1表示未开启
-    units:[     // Array 布控单元列表
+const json_surveillance_task = (index) => ({
+    name: `布控${index}`,
+    id: `${index}`,
+    ready: 0, //0表示已经ready, 1表示正在准备中
+    enable: 0, // int 0表示开启, 1表示未开启
+    units: [     // Array 布控单元列表
         {
-            camera_id:`camera_id_${index}`,
-            repository_cluster_id:`集群id-${index}`,
-            repository_id:`${index}`,
-            threshold:80.0
+            camera_id: `camera_id_${index}`,
+            repository_cluster_id: `集群id-${index}`,
+            repository_id: `${index}`,
+            threshold: 80.0
         }
-    ],       
-    extra_meta:{}
+    ],
+    extra_meta: {}
 })
-const json_repository=(index)=>({
-    name:`人像库${index}`,
-    id:`${index}`,
-    face_image_num:100,
-    creator_id:11111,
-    create_time:1595050097,
-    permission_map:{},
-    extra_meta:{}
+const json_repository = (index) => ({
+    name: `人像库${index}`,
+    id: `${index}`,
+    face_image_num: 100,
+    creator_id: 11111,
+    create_time: 1595050097,
+    permission_map: {},
+    extra_meta: {}
 })
-const json_camera=(index)=>({
-    name:`相机${index}`,
-    id:index,
-    url:'url',
-    enabled:1,
-    rec_params:{},
-    permission_map:{},
-    predecessor_ids:[],
-    extra_meta:{},
-    status:4
+const json_camera = (index) => ({
+    name: `相机${index}`,
+    id: index,
+    url: 'url',
+    enabled: 1,
+    rec_params: {},
+    permission_map: {},
+    predecessor_ids: [],
+    extra_meta: {},
+    status: 4
 })
-module.exports={
+module.exports = {
     json_retrieval_repository,
     json_hit_alert,
     json_surveillance_task,
     json_repository,
-    json_camera
+    json_camera,
+    json_retrieval_camera
 }

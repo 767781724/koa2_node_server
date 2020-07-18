@@ -69,14 +69,14 @@ const json_hit_alert = {
 }
 const json_surveillance_task=(index)=>({
     name:`布控${index}`,
-    id:index,
+    id:`${index}`,
     ready:0, //0表示已经ready, 1表示正在准备中
     enable:0, // int 0表示开启, 1表示未开启
     units:[     // Array 布控单元列表
         {
             camera_id:`camera_id_${index}`,
             repository_cluster_id:`集群id-${index}`,
-            repository_id:index,
+            repository_id:`${index}`,
             threshold:80.0
         }
     ],       
@@ -84,7 +84,7 @@ const json_surveillance_task=(index)=>({
 })
 const json_repository=(index)=>({
     name:`人像库${index}`,
-    id:index,
+    id:`${index}`,
     face_image_num:100,
     creator_id:11111,
     create_time:1595050097,

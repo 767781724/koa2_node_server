@@ -36,12 +36,12 @@ router.post('/business/api/login', async (ctx, next) => {
 //人像检索
 router.post('/business/api/retrieval_repository', async (ctx, next) => {
 	const params = ctx.request.body;
-	ctx.body = config_retrieval_repository(params.start, params.limt)
+	ctx.body = config_retrieval_repository(params.start, params.limit)
 })
 //告警接口
 router.post('/business/api/hit/alert', async (ctx, next) => {
 	const params = ctx.request.body;
-	ctx.body = config_hit_alert(params.start, params.limt)
+	ctx.body = config_hit_alert(params.start, params.limit)
 })
 //查看布控库
 router.get('/business/api/surveillance/task', async (ctx, next) => {

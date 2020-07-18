@@ -106,16 +106,16 @@ const json_repository = (index) => ({
     permission_map: {},
     extra_meta: {}
 })
-const json_camera = (index) => ({
-    name: `相机${index}`,
-    id: index,
-    url: 'url',
-    enabled: 1,
-    rec_params: {},
-    permission_map: {},
-    predecessor_ids: [],
-    extra_meta: {},
-    status: 4
+const json_camera=(index)=>({
+    name:`相机${index}`,
+    id:`${index}`,
+    url:'url',
+    enabled:1,
+    rec_params:{},
+    permission_map:{},
+    predecessor_ids:[],
+    extra_meta:{},
+    status:4
 })
 module.exports = {
     json_retrieval_repository,

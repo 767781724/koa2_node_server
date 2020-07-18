@@ -6,8 +6,10 @@ const {
 	config_face_verify,
 	config_camera
 } = require('../public/config')
-
-const router = require('koa-router')()
+const {img} = require('../public/json_img');
+const path=require('path');
+const router = require('koa-router')();
+const fs=require('fs');
 
 router.get('/', async (ctx, next) => {
 	await ctx.render('index', {
@@ -83,5 +85,11 @@ router.post('/business/api/repository/picture/batch_single_person', async (ctx) 
 			face_rect:{}
 		}]
 	}
+})
+router.get('/storage/image',async (ctx)=>{
+	const filePath=path.join(__dirname,'../public/img/default.jpg')
+	const file = fs.readFileSync(filePath);
+	ctx.set('content-type', 'image/jpg');
+	ctx.body=file;
 })
 module.exports = router

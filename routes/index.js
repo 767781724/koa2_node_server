@@ -10,6 +10,8 @@ const {
 const path=require('path');
 const router = require('koa-router')();
 const fs=require('fs');
+const request = require('request');
+const base64Image=require('../public/img/image.js').Base64Image;
 
 router.get('/', async (ctx, next) => {
 	await ctx.render('index', {
@@ -41,6 +43,7 @@ router.post('/business/api/retrieval_repository', async (ctx, next) => {
 //实时检索
 router.post('/business/api/retrieval_camera', async (ctx, next) => {
 	const params = ctx.request.body;
+	// console.log(ctx.request.body)
 	ctx.body = config_retrieval_camera(params.start, params.limit)
 })
 //告警接口
@@ -91,11 +94,31 @@ router.post('/business/api/repository/picture/batch_single_person', async (ctx) 
 		}]
 	}
 })
-router.get('/storage/v1/image',async (ctx)=>{
-	console.log(ctx.request)
-	const filePath=path.join(__dirname,'../public/img/default.jpg')
-	const file = fs.readFileSync(filePath);
-	ctx.set('content-type', 'image/jpg');
-	ctx.body=file;
+router.get('/business/api/storage/image',async (ctx)=>{
+	await new Promise(function(resolve, reject) {
+        var req = request({
+            method: 'GET',
+            encoding: null,
+            // uri: 'http://images5.fanpop.com/image/photos/30900000/beautiful-pic-different-beautiful-pictures-30958249-1600-1200.jpg'
+            uri: 'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1091405991,859863778&fm=26&gp=0.jpg'
+        }, function(err, response, body) {
+            if (err) {
+                return reject(err);
+            }
+            resolve(body);
+        });
+    }).then((body) => {
+        ctx.status = 200;
+        ctx.type = 'jpg';
+        ctx.length = Buffer.byteLength(body);
+        ctx.body =body;
+    }).catch((err) => {
+        console.error(err);
+    });
+	// let imageByte = new Byte[ (int) file1.length() ];
+	// ctx.body=new Blob(file,'binary');
+})
+router.get('/storage/v1/image2',async (ctx)=>{
+	ctx.body=base64Image;
 })
 module.exports = router

@@ -23,12 +23,12 @@ const config_hit_alert=(start,limt)=>{
 		"message": "OK",
 		"pair_results": [],
 		"rtn": 0,
-		"total": 25
+		"total": 1
     }
     if(start>25){
         return res;
     }
-    for(let i=0;i<limt;i++){
+    for(let i=0;i<1;i++){
         res.pair_results.push(
             json_hit_alert
         )
@@ -102,7 +102,7 @@ const config_camera=()=>{
         "cameras":[],
 		"rtn": 0,
     }
-    for(let i=0;i<9;i++){
+    for(let i=0;i<6;i++){
         res.cameras.push(json_camera(i))
     }
     return res;

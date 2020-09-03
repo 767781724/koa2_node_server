@@ -47,8 +47,13 @@ const config_retrieval_camera=(start,limit)=>{
         return res;
     }
     for(let i=0;i<limit;i++){
+        const obj=json_retrieval_camera(i);
+        if(i%3===0){
+            delete obj.face_image_uri;
+            console.log(i)
+        }
         res.results.push(
-            json_retrieval_camera(i)
+            obj
         )
     }
     return res;

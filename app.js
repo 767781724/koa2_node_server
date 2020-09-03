@@ -15,24 +15,28 @@ const index = require('./routes/index')
 
 // error handler
 // onerror(app)
-// app.use(cors())
-// const proxyOptions={
-//   targets:{
-//     '/business/(.*)':{
-//       target:'http://10.40.80.50:11180',
-//       changeOrigin:true
-//     },
-//     '/storage/(.*)':{
-//       target:'http://10.40.80.50:7320',
-//       changeOrigin:true
-//     },
-//     '/face/(.*)':{
-//       target:'http://10.40.80.50:11180',
-//       changeOrigin:true
-//     },
-//   }
-// }
-// app.use(proxy(proxyOptions))
+app.use(cors())
+const proxyOptions={
+  targets:{
+    '/business/(.*)':{
+      target:'http://10.40.80.50:11180',
+      changeOrigin:true
+    },
+    '/storage/(.*)':{
+      target:'http://10.40.80.50:7320',
+      changeOrigin:true
+    },
+    '/face/(.*)':{
+      target:'http://10.40.80.50:11180',
+      changeOrigin:true
+    },
+    '/v1/(.*)':{
+      target:'http://47.101.168.14:7020',
+      changeOrigin:true
+    }
+  }
+}
+app.use(proxy(proxyOptions))
 
 // middlewares
 app.use(koaBody({multipart:true}));

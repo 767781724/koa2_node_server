@@ -41,7 +41,7 @@ router.post('/business/api/retrieval_repository', async (ctx, next) => {
 	ctx.body = config_retrieval_repository(params.start, params.limit)
 })
 //实时检索
-router.post('/business/api/retrieval_camera', async (ctx, next) => {
+router.post('/business/api/condition/query_camera', async (ctx, next) => {
 	const params = ctx.request.body;
 	// console.log(ctx.request.body)
 	ctx.body = config_retrieval_camera(params.start, params.limit)
